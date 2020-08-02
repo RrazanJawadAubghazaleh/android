@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Movie Zone</string>
+    <string name="SignIn">Sign In</string>
+    <string name="user_email">Email</string>
+
+    <string name="notRegistered">don\'t have a account?</string>
+    <string name="signup">SIGN UP</string>
+    <string name="password">Password</string>
+    <string name="forgetPasswprd">Forget Passwprd</string>
+    <string name="Movies">Movies</string>
+    <string name="Trending">Trending</string>
 </resources>

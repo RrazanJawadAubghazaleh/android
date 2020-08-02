@@ -1,10 +1,30 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="myEditText">
+        <item name="android:background">@drawable/background_edit_login_activity</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColorHint">#292b3a</item>
+        <item name="android:textColorHighlight">@android:color/background_light</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:shadowColor">#A8A8A8</item>
+        <item name="android:textColor">#292b3a</item>
+    </style>
+
+    <style name="myTextView">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="background">?selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="myTextViewofSignin" parent="myTextView">
+        <item name="android:textColor">#000000</item>
+
+    </style>
 </resources>
