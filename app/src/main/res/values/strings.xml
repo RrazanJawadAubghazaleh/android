@@ -9,4 +9,7 @@
     <string name="forgetPasswprd">Forget Passwprd</string>
     <string name="Movies">Movies</string>
     <string name="Trending">Trending</string>
+    <string name="googleFaild">Sorry..Authentication failed</string>
+    <string name="loginSuccess">login success</string>
+    <string name="loginError">The email or password is empty</string>
 </resources>

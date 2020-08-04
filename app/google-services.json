@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "626477310070",
+    "firebase_url": "https://movio-zone.firebaseio.com",
+    "project_id": "movio-zone",
+    "storage_bucket": "movio-zone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626477310070:android:1a8d6bbb302368c392bf57",
+        "android_client_info": {
+          "package_name": "com.movieapp.razan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626477310070-qobvpshipb4vpsm35m01c88nrcld1m32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.movieapp.razan",
+            "certificate_hash": "44758fd859e6a3f50dea44daec493710af9f6c17"
+          }
+        },
+        {
+          "client_id": "626477310070-a12faj16lr05js0p55ag6smfu8e5oco1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-GZUtKNNDjMfFXXCN-XSSbHL1J57Ng2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626477310070-a12faj16lr05js0p55ag6smfu8e5oco1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
