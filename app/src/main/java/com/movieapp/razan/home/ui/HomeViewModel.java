@@ -44,21 +44,7 @@ public class HomeViewModel extends ViewModel {
                 Log.e("TAGR", t.toString());
             }
         });
-        ////////////////////////
-     /*   ApiClient.getINSTANNCE().getTrendingMovies(API_KEY).enqueue(new Callback<TrendingModel>() {
-            @Override
-            public void onResponse(Call<TrendingModel> call, Response<TrendingModel> response) {
-                TrendingModel trendingModel = response.body();
-                listMutableLiveDataTrending
-                        .setValue((ArrayList<ResultModel>) trendingModel.getResultModels());
-            }
 
-            @Override
-            public void onFailure(Call<TrendingModel> call, Throwable t) {
-                Log.d("Failure", t.getMessage());
-
-            }
-        });*/
 
     }
 }

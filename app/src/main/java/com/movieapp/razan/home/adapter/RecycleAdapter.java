@@ -2,6 +2,7 @@ package com.movieapp.razan.home.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,11 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.core.ImageTranscoderType;
+import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
 import com.movieapp.razan.home.model.Result;
 import com.squareup.picasso.Picasso;
@@ -25,14 +31,16 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
     private static String PLAYER_ID_KEY = "Player_id_key";
     private Context context;
 
-    public RecycleAdapter(ArrayList<Result> item) {
-        items = item;
-
-    }
 
     public RecycleAdapter(Context context) {
         this.context = context;
-        // notifyDataSetChanged();
+        Fresco.initialize(
+                context,
+                ImagePipelineConfig.newBuilder(context)
+                        .setMemoryChunkType(MemoryChunkType.BUFFER_MEMORY)
+                        .setImageTranscoderType(ImageTranscoderType.JAVA_TRANSCODER)
+                        .experiment().setNativeCodeDisabled(true)
+                        .build());
     }
 
 
@@ -51,13 +59,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
     @Override
     public void onBindViewHolder(final viewitem holder, final int position) {
 
-        //Glide.with(context).load("https://cdn2.thecatapi.com/images/" + items.get(position).getId()).into(holder.image);
-
         Log.d("movie_id", items.get(position).getPosterPath());
-          Picasso.get().load("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath()).into(holder.image);
+        Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath());
+        holder.draweeView.setImageURI(uri);
+
 
     }
-    //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+
 
     @Override
     public int getItemCount() {
@@ -91,15 +99,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
     class viewitem extends RecyclerView.ViewHolder {
 
         //Declare
-        TextView textViewName, textViewTeam;
-        ImageView image;
-        CardView cardView;
-
-
+       // ImageView image;
+        SimpleDraweeView draweeView ;
         //initialize
         public viewitem(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.img_trending);
+            //image = itemView.findViewById(R.id.img_trending);
+            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view);
 
         }
     }
