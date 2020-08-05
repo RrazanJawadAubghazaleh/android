@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.movieapp.razan.HomeActivity;
+import com.movieapp.razan.home.ui.HomeActivity;
 import com.movieapp.razan.login.interfac.LoginResultCallBack;
 import com.movieapp.razan.login.model.UsersModel;
 import com.movieapp.razan.R;

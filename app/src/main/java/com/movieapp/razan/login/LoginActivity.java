@@ -1,4 +1,4 @@
-package com.movieapp.razan;
+package com.movieapp.razan.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.movieapp.razan.R;
+import com.movieapp.razan.databinding.ActivityLoginBinding;
+import com.movieapp.razan.home.ui.HomeActivity;
 import com.movieapp.razan.login.interfac.LoginResultCallBack;
 import com.movieapp.razan.login.viewModel.LoginViewModel;
 import com.movieapp.razan.login.viewModel.LoginViewModelFactory;
-import com.movieapp.razan.databinding.ActivityLoginBinding;
 
 import es.dmoral.toasty.Toasty;
 
@@ -30,7 +32,6 @@ public class LoginActivity extends AppCompatActivity  implements LoginResultCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         final ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setViewModel(ViewModelProviders.of(this,
                 new LoginViewModelFactory(this, this))

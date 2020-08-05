@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".home.ui.HomeActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,24 +70,27 @@
             android:layout_marginTop="20dp"
             android:letterSpacing="0.03"
             android:lineSpacingExtra="9sp"
+            android:padding="5dp"
             android:text="@string/Trending"
             android:textColor="#292b3a"
             android:textSize="18sp"
             android:textStyle="bold|italic"
+            app:layout_constraintEnd_toStartOf="@id/tv_text_Movis"
             app:layout_constraintStart_toStartOf="@+id/imageView_navigation"
             app:layout_constraintTop_toBottomOf="@+id/imageView_navigation" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_trending"
-            android:layout_width="0dp"
-            android:layout_height="122dp"
-            android:layout_marginTop="150dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_text_trending"
-            app:layout_constraintTop_toBottomOf="@+id/tv_text_trending" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_trending"
+        android:layout_width="0dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_constraint"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
