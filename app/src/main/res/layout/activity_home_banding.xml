@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.ui.HomeActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="237dp"
+            android:background="@drawable/background_constrant"
+            android:bottomLeftRadius="70dp"
+            android:bottomRightRadius="25dp"
+            android:orientation="horizontal"
+            android:padding="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView_navigation"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="89dp"
+                android:src="@drawable/ic_menu"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintEnd_toStartOf="@+id/tv_text_Movis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_text_Movis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="13sp"
+                android:text="@string/Movies"
+                android:textColor="#292b3a"
+                android:textSize="28sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_serch"
+                app:layout_constraintStart_toEndOf="@id/imageView_navigation"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView_serch"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="89dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_text_Movis"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+            <TextView
+                android:id="@+id/tv_text_trending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="9sp"
+                android:text="@string/Trending"
+                android:textColor="#292b3a"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toStartOf="@id/tv_text_Movis"
+                app:layout_constraintStart_toStartOf="@+id/imageView_navigation"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_navigation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_trending"
+            android:layout_width="0dp"
+            android:layout_height="122dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_constraint" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_trending">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.ogaclejapan.smarttablayout.SmartTabLayout
+                    android:id="@+id/viewpagertab"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    app:stl_clickable="true"
+                    app:stl_defaultTabBackground="?attr/selectableItemBackground"
+                    app:stl_defaultTabTextAllCaps="true"
+                    app:stl_defaultTabTextColor="@color/colorBlack"
+                    app:stl_defaultTabTextHorizontalPadding="16dp"
+                    app:stl_defaultTabTextMinWidth="0dp"
+                    app:stl_defaultTabTextSize="12sp"
+                    app:stl_distributeEvenly="true"
+                    app:stl_dividerColor="@color/colorText"
+                    app:stl_dividerThickness="1dp"
+                    app:stl_drawDecorationAfterTab="false"
+                    app:stl_indicatorAlwaysInCenter="false"
+                    app:stl_indicatorColor="@color/colorText"
+                    app:stl_indicatorCornerRadius="2dp"
+                    app:stl_indicatorGravity="bottom"
+                    app:stl_indicatorInFront="true"
+                    app:stl_indicatorInterpolation="smart"
+                    app:stl_indicatorThickness="4dp"
+                    app:stl_indicatorWidth="auto"
+                    app:stl_indicatorWithoutPadding="false"
+                    app:stl_overlineColor="#4D000000"
+                    app:stl_overlineThickness="0dp"
+                    app:stl_titleOffset="24dp"
+                    app:stl_underlineColor="#6B000000"
+                    app:stl_underlineThickness="1dp"
+                    tools:ignore="MissingClass" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

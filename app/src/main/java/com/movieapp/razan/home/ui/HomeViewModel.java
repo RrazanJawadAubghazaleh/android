@@ -37,6 +37,7 @@ public class HomeViewModel extends ViewModel {
                 TrendingModel trendingModel = response.body();
                 ArrayList<Result> resultModels =  response.body().getResults();
                 listMutableLiveDataTrending.setValue(resultModels);
+
             }
 
             @Override

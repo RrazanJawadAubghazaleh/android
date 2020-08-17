@@ -28,7 +28,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
 
 
     ArrayList<Result> items;
-    private static String PLAYER_ID_KEY = "Player_id_key";
     private Context context;
 
 

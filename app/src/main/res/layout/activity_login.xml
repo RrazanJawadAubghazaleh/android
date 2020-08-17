@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="viewModel"
-    type="com.movieapp.razan.login.viewModel.LoginViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.movieapp.razan.login.viewModel.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -113,7 +114,7 @@
             android:inputType="textEmailAddress"
             android:shadowColor="#717070"
             android:textColorHint="#707070"
-           app:addTextChangedListener="@{viewModel.getEmail}"
+            app:addTextChangedListener="@{viewModel.getEmail}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_signIn" />
@@ -141,9 +142,9 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:background="#fac800"
+            android:onClick="@{viewModel::onLogincliked}"
             android:shadowColor="#8C8C8C"
             android:text="@string/SignIn"
-            android:onClick="@{viewModel::onLogincliked}"
             app:layout_constraintEnd_toEndOf="@id/ed_enter_user_name"
             app:layout_constraintStart_toStartOf="@+id/ed_enter_user_name"
             app:layout_constraintTop_toBottomOf="@id/ed_enter_password" />
@@ -154,13 +155,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
             android:gravity="center_horizontal"
             android:letterSpacing="0.05"
             android:lineSpacingExtra="8sp"
             android:text="@string/forgetPasswprd"
             android:textAllCaps="false"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
             android:textColor="@color/colorText"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="@id/tv_signIn"
@@ -186,8 +187,8 @@
             style="@style/myTextViewofSignin"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:layout_marginTop="42dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="42dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:text="@string/signup"
