@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="8dp"
+    android:clickable="true"
+    android:elevation="3dp"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    app:cardCornerRadius="10dp"
+    app:ignore="NamespaceTypo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        >
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/my_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            app:ignore="MissingConstraints"
+            fresco:layout_constraintEnd_toEndOf="parent"
+            fresco:layout_constraintStart_toStartOf="parent"
+            fresco:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_movies_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
+            fresco:layout_constraintTop_toBottomOf="@+id/my_image_view"
+            tools:text="tyyioo" />
+
+
+        <TextView
+            android:id="@+id/tv_type_movies_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
+            fresco:layout_constraintTop_toBottomOf="@+id/tv_name_movies_home"
+            tools:text="tyyioo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="8dp"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
+            fresco:layout_constraintTop_toBottomOf="@+id/tv_type_movies_home">
+
+            <LinearLayout
+                android:id="@+id/lin__circal_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_sub_type"
+                fresco:layout_constraintEnd_toStartOf="@+id/tv_TextOfOfRea_home"
+                fresco:layout_constraintStart_toStartOf="parent"
+                fresco:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_numetOfReat_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bal"
+                    android:text="5.8"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    fresco:layout_constraintEnd_toEndOf="parent"
+                    fresco:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_TextOfOfRea_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/app_name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                fresco:layout_constraintEnd_toStartOf="@+id/my_heart_home"
+                fresco:layout_constraintStart_toEndOf="@+id/lin__circal_home"
+                fresco:layout_constraintTop_toTopOf="parent" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/my_heart_home"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:scaleType="fitCenter"
+                app:ignore="MissingConstraints"
+                fresco:layout_constraintEnd_toEndOf="parent"
+                fresco:layout_constraintStart_toEndOf="@+id/tv_TextOfOfRea_home"
+                fresco:layout_constraintTop_toTopOf="parent"
+                fresco:placeholderImage="@drawable/h" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
