@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.movieapp.razan.R;
-import com.movieapp.razan.databinding.RowItemTrandingBandingBinding;
+import com.movieapp.razan.databinding.RowItemTrandingBBinding;
 import com.movieapp.razan.home.model.Result;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class TrandingRecycleAdapter extends RecyclerView.Adapter<TrandingRecycle
     private Context context;
     private ArrayList<Result>results=new ArrayList<>();
 
-
+    RowItemTrandingBBinding rowItemTrandingBBinding;
     public TrandingRecycleAdapter(Context context, ArrayList<Result> results) {
         this.context = context;
         this.results = results;
@@ -33,19 +33,25 @@ public class TrandingRecycleAdapter extends RecyclerView.Adapter<TrandingRecycle
     @Override
     public MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        RowItemTrandingBandingBinding rowItemTrandingBanding= DataBindingUtil.inflate(
+        RowItemTrandingBBinding rowItemTrandingBBinding=DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
-                R.layout.row_item_tranding_banding,parent,false);
-        MyviewHolder myviewHolder=new MyviewHolder(rowItemTrandingBanding);
-        return myviewHolder;
+                R.layout.row_item_tranding_b,parent,false);
+        MyviewHolder myviewHolder=new MyviewHolder(rowItemTrandingBBinding);
+        return  myviewHolder;
+
+       /* rowItemTrandingBBinding= DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.row_item_tranding_b,parent,false);
+        MyviewHolder myviewHolder=new MyviewHolder(rowItemTrandingBBinding);
+        return myviewHolder;*/
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
 
         Result result=results.get(position);
-        holder.rowItemTrandingBinding.setResult(result);
-        holder.rowItemTrandingBinding.myImageView.setImageURI( Uri.parse("https://image.tmdb.org/t/p/w500"+result.getPosterPath()));
+        holder.rowItemTrandingBBinding.setResult(result);
+        holder.rowItemTrandingBBinding.myImageView.setImageURI( Uri.parse("https://image.tmdb.org/t/p/w500"+result.getPosterPath()));
 
        /* Log.d("movie_id", items.get(position).getPosterPath());
         Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath());
@@ -63,11 +69,11 @@ public class TrandingRecycleAdapter extends RecyclerView.Adapter<TrandingRecycle
 
     public static class MyviewHolder extends RecyclerView.ViewHolder {
 
-        RowItemTrandingBandingBinding rowItemTrandingBinding;
+        RowItemTrandingBBinding rowItemTrandingBBinding;
 
-        public MyviewHolder(@NonNull RowItemTrandingBandingBinding rowItemTrandingBanding) {
-            super(rowItemTrandingBanding.getRoot());
-           this.rowItemTrandingBinding=rowItemTrandingBinding;
+        public MyviewHolder(@NonNull RowItemTrandingBBinding rowItemTrandingBBinding) {
+            super(rowItemTrandingBBinding.getRoot());
+           this.rowItemTrandingBBinding=rowItemTrandingBBinding;
         }
     }
 }

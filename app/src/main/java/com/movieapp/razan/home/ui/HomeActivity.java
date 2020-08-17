@@ -8,23 +8,25 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.movieapp.razan.R;
 import com.movieapp.razan.databinding.ActivityHomeBandingBinding;
+import com.movieapp.razan.home.adapter.HomeViewOagerAdapter;
 import com.movieapp.razan.home.adapter.RecycleAdapter;
 import com.movieapp.razan.home.adapter.TrandingRecycleAdapter;
 import com.movieapp.razan.home.model.Result;
-import com.movieapp.razan.login.viewModel.LoginViewModel;
-import com.movieapp.razan.login.viewModel.LoginViewModelFactory;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private ViewPager viewPager;
+    private HomeViewOagerAdapter homeViewOagerAdapter;
+private RecycleAdapter recycleAdapter;
     HomeViewModel homeViewModel;
-    RecycleAdapter recycleAdapter;
-
     ActivityHomeBandingBinding homeBanding;
     TrandingRecycleAdapter adapter;
 
@@ -32,10 +34,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        homeBanding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        homeBanding.recyclerViewTrending.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.HORIZONTAL, false));
-        homeBanding.recyclerViewTrending.setHasFixedSize(true);
+
+       // homeBanding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this,
+//          /      LinearLayoutManager.HORIZONTAL, false));
+//        recyclerView.setHasFixedSize(true);
 
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -44,22 +47,29 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setUP() {
+        viewPager = findViewById(R.id.view_pager);
+       // menuPagerAdapterNew = new MenuPagerAdapterNew(getSupportFragmentManager(), MenuActivity.this);
+        //3 d
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(homeViewOagerAdapter);
+        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
 
-        /*recyclerView = findViewById(R.id.recyclerView_trending);
+        recyclerView = findViewById(R.id.recyclerView_trending);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.HORIZONTAL, false));*/
+                LinearLayoutManager.HORIZONTAL, false));
 
-        homeViewModel.listMutableLiveDataTrending.observe(this, new Observer<ArrayList<Result>>() {
+      homeViewModel.listMutableLiveDataTrending.observe(this, new Observer<ArrayList<Result>>() {
             @Override
             public void onChanged(ArrayList<Result> results) {
 
-                //recycleAdapter = new RecycleAdapter(HomeActivity.this);
-                adapter=new TrandingRecycleAdapter(HomeActivity.this,results);
+                recycleAdapter = new RecycleAdapter(HomeActivity.this);
+                recycleAdapter.setList(results);
+                //adapter = new TrandingRecycleAdapter(HomeActivity.this, results);
 
-              //  recycleAdapter.addPlayers(results);
-               // recyclerView.setAdapter(recycleAdapter);
-                homeBanding.recyclerViewTrending.setAdapter(adapter);
+                 recyclerView.setAdapter(recycleAdapter);
+               // recyclerView.setAdapter(adapter);
 
 
             }
