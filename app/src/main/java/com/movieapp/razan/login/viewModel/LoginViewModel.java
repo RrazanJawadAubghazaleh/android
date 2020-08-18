@@ -1,5 +1,6 @@
 package com.movieapp.razan.login.viewModel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -10,12 +11,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movieapp.razan.home.ui.HomeActivity;
+import com.movieapp.razan.login.LoginActivity;
 import com.movieapp.razan.login.interfac.LoginResultCallBack;
 import com.movieapp.razan.login.model.UsersModel;
 import com.movieapp.razan.R;
+
+import es.dmoral.toasty.Toasty;
 
 public class LoginViewModel extends ViewModel {
     private UsersModel users;
@@ -73,10 +80,23 @@ public class LoginViewModel extends ViewModel {
     //login
     public void onLogincliked(View view){
         if (users.isValidData())
-        {loginResultCallBack.onSuccess(R.string.loginSuccess);
+        {//
             mAuth = FirebaseAuth.getInstance();
             firebaseAuthWithGoogle();
-            mAuth.signInWithEmailAndPassword(users.getEmail(),users.getPassword());
+            mAuth.signInWithEmailAndPassword(users.getEmail(),users.getPassword()).addOnSuccessListener((Activity) context, new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    loginResultCallBack.onSuccess(R.string.loginSuccess);
+
+                }
+            });
+
+            mAuth.signInWithEmailAndPassword(users.getEmail(),users.getPassword()).addOnFailureListener((Activity) context, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toasty.error(context,  R.string.googleFaild, Toast.LENGTH_SHORT, true).show();
+                }
+            });
             }
     else
             loginResultCallBack.onError(R.string.loginError);
