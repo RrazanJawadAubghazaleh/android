@@ -114,7 +114,7 @@
                 fresco:layout_constraintEnd_toEndOf="parent"
                 fresco:layout_constraintStart_toEndOf="@+id/tv_TextOfOfRea_home"
                 fresco:layout_constraintTop_toTopOf="parent"
-                fresco:placeholderImage="@drawable/h" />
+                fresco:placeholderImage="@drawable/heart" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
