@@ -100,7 +100,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
         public viewitem(View itemView) {
             super(itemView);
             //image = itemView.findViewById(R.id.img_trending);
-            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view);
+            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_home);
 
         }
     }

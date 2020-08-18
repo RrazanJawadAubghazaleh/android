@@ -22,7 +22,7 @@
 
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/my_image_view"
+            android:id="@+id/my_image_view_home"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:adjustViewBounds="true"
@@ -41,9 +41,9 @@
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold"
-            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
-            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
-            fresco:layout_constraintTop_toBottomOf="@+id/my_image_view"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view_home"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view_home"
+            fresco:layout_constraintTop_toBottomOf="@+id/my_image_view_home"
             tools:text="tyyioo" />
 
 
@@ -54,8 +54,8 @@
             android:layout_margin="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
-            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view_home"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view_home"
             fresco:layout_constraintTop_toBottomOf="@+id/tv_name_movies_home"
             tools:text="tyyioo" />
 
@@ -64,8 +64,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="8dp"
-            fresco:layout_constraintEnd_toEndOf="@id/my_image_view"
-            fresco:layout_constraintStart_toStartOf="@+id/my_image_view"
+            fresco:layout_constraintEnd_toEndOf="@id/my_image_view_home"
+            fresco:layout_constraintStart_toStartOf="@+id/my_image_view_home"
             fresco:layout_constraintTop_toBottomOf="@+id/tv_type_movies_home">
 
             <LinearLayout

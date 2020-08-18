@@ -7,10 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -20,7 +17,6 @@ import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
 import com.movieapp.razan.home.model.Result;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -104,7 +100,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
         public viewitem(View itemView) {
             super(itemView);
             //image = itemView.findViewById(R.id.img_trending);
-            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view);
+            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_home);
 
         }
     }
