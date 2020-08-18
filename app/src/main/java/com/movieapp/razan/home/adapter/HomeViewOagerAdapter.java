@@ -31,7 +31,7 @@ public class HomeViewOagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 4;
+        return 2;
     }
 
     @Nullable

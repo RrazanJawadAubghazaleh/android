@@ -13,8 +13,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.movieapp.razan.R;
 import com.movieapp.razan.databinding.ActivityHomeBandingBinding;
 import com.movieapp.razan.home.adapter.HomeViewOagerAdapter;
+import com.movieapp.razan.home.adapter.PagerAdapter;
 import com.movieapp.razan.home.adapter.RecycleAdapter;
 import com.movieapp.razan.home.adapter.TrandingRecycleAdapter;
+import com.movieapp.razan.home.fragment.ActionFragment;
 import com.movieapp.razan.home.model.Result;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
@@ -25,6 +27,10 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ViewPager viewPager;
     private HomeViewOagerAdapter homeViewOagerAdapter;
+    private static final int NUM_PAGES = 5;
+    private ViewPager mPager;
+    private PagerAdapter pagerAdapter;
+
 private RecycleAdapter recycleAdapter;
     HomeViewModel homeViewModel;
     ActivityHomeBandingBinding homeBanding;
@@ -47,13 +53,27 @@ private RecycleAdapter recycleAdapter;
     }
 
     private void setUP() {
-        viewPager = findViewById(R.id.view_pager);
+       // viewPager = findViewById(R.id.view_pager);
        // menuPagerAdapterNew = new MenuPagerAdapterNew(getSupportFragmentManager(), MenuActivity.this);
         //3 d
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(homeViewOagerAdapter);
+
+        mPager = (ViewPager) findViewById(R.id.view_pager);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),2,HomeActivity.this);
+        mPager.setAdapter(pagerAdapter);
+      //  viewPager = findViewById(R.id.view_pager);
+        //viewPager.setAdapter(homeViewOagerAdapter);
+
+
+
+
         SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
-        viewPagerTab.setViewPager(viewPager);
+        viewPagerTab.setViewPager(mPager);
+
+
+
+
+
+
 
         recyclerView = findViewById(R.id.recyclerView_trending);
         recyclerView.setHasFixedSize(true);

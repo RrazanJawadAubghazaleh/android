@@ -7,4 +7,6 @@
     <color name="colorBlack">#FF000000</color>
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorOrang">#FAC800</color>
+    <color name="colorPagetTab">#292B3A</color>
+    <color name="colorPagerDividerColor">#00707070</color>
 </resources>
