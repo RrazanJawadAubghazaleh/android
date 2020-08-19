@@ -8,18 +8,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.movieapp.razan.home.fragment.ActionFragment;
-import com.movieapp.razan.home.ui.HomeActivity;
+
+import com.movieapp.razan.home.model.Genre;
+import java.util.ArrayList;
+
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
+    ArrayList<Genre> items;
 
-    public PagerAdapter(@NonNull FragmentManager fm,int behavior,Context context) {
-        super(fm, behavior);
+    public PagerAdapter(Context context, FragmentManager fm, ArrayList<Genre> list) {
+        super(fm);
         this.context = context;
+        this.items = list;
     }
-
-
 
     @NonNull
     @Override
@@ -29,19 +32,15 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return items.size();
     }
 
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                // 4 to chang name  of tab from english to arabic
-                return "Action";
 
-            case 1:
-                return "Darama";
+         return items.get(position).getName().toString();
 
-        }
-        return null;
     }
+
+
+
 }

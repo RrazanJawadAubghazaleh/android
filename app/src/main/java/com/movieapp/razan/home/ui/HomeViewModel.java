@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.movieapp.razan.home.data.ApiClient;
 import com.movieapp.razan.home.data.ApiInterface;
+import com.movieapp.razan.home.model.GenersListModel;
+import com.movieapp.razan.home.model.Genre;
 import com.movieapp.razan.home.model.Result;
 import com.movieapp.razan.home.model.TrendingModel;
 
@@ -22,6 +24,8 @@ public class HomeViewModel extends ViewModel {
     private final static String API_KEY = "f0dd213b514dd22fa6d7790fdae32949";
     MutableLiveData<ArrayList<Result>> listMutableLiveDataTrending =
             new MutableLiveData<>();
+
+    MutableLiveData< ArrayList<Genre>> genersListMutableLiveData=new MutableLiveData<ArrayList<Genre>>();
 
     public void getTrending() {
 
@@ -42,6 +46,30 @@ public class HomeViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<TrendingModel> call, Throwable t) {
+                Log.e("TAGR", t.toString());
+            }
+        });
+
+
+    }
+
+    public void getGenersList() {
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<GenersListModel> call = apiService.getGenreList(API_KEY);
+
+        call.enqueue(new Callback<GenersListModel>() {
+            @Override
+            public void onResponse(Call<GenersListModel> call, Response<GenersListModel> response) {
+                Log.d("TAGR", "Number of movies received: " + response.body().getGenres());
+                ArrayList<Genre> genres = response.body().getGenres();
+                genersListMutableLiveData.setValue(genres);
+            }
+
+            @Override
+            public void onFailure(Call<GenersListModel> call, Throwable t) {
                 Log.e("TAGR", t.toString());
             }
         });

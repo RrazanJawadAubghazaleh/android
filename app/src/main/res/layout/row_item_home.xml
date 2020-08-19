@@ -73,12 +73,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/circle_sub_type"
-                fresco:layout_constraintEnd_toStartOf="@+id/tv_TextOfOfRea_home"
+                fresco:layout_constraintEnd_toStartOf="@+id/tv_vote_average_home"
                 fresco:layout_constraintStart_toStartOf="parent"
                 fresco:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_numetOfReat_home"
+                    android:id="@+id/tv_reat_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -92,7 +92,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_TextOfOfRea_home"
+                android:id="@+id/tv_vote_average_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -112,7 +112,7 @@
                 android:scaleType="fitCenter"
                 app:ignore="MissingConstraints"
                 fresco:layout_constraintEnd_toEndOf="parent"
-                fresco:layout_constraintStart_toEndOf="@+id/tv_TextOfOfRea_home"
+                fresco:layout_constraintStart_toEndOf="@+id/tv_vote_average_home"
                 fresco:layout_constraintTop_toTopOf="parent"
                 fresco:placeholderImage="@drawable/heart" />
         </androidx.constraintlayout.widget.ConstraintLayout>

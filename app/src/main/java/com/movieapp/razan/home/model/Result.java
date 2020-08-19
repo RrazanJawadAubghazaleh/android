@@ -69,6 +69,9 @@ public class Result {
     public Result(String posterPath) {
         this.posterPath = posterPath;
     }
+    public Result( ) {
+
+    }
 
     public String getOriginalName() {
         return originalName;

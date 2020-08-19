@@ -16,11 +16,12 @@ import com.movieapp.razan.home.adapter.HomeViewOagerAdapter;
 import com.movieapp.razan.home.adapter.PagerAdapter;
 import com.movieapp.razan.home.adapter.RecycleAdapter;
 import com.movieapp.razan.home.adapter.TrandingRecycleAdapter;
-import com.movieapp.razan.home.fragment.ActionFragment;
+import com.movieapp.razan.home.model.Genre;
 import com.movieapp.razan.home.model.Result;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -49,31 +50,11 @@ private RecycleAdapter recycleAdapter;
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         homeViewModel.getTrending();
+        homeViewModel.getGenersList();
         setUP();
     }
 
     private void setUP() {
-       // viewPager = findViewById(R.id.view_pager);
-       // menuPagerAdapterNew = new MenuPagerAdapterNew(getSupportFragmentManager(), MenuActivity.this);
-        //3 d
-
-        mPager = (ViewPager) findViewById(R.id.view_pager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),2,HomeActivity.this);
-        mPager.setAdapter(pagerAdapter);
-      //  viewPager = findViewById(R.id.view_pager);
-        //viewPager.setAdapter(homeViewOagerAdapter);
-
-
-
-
-        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
-        viewPagerTab.setViewPager(mPager);
-
-
-
-
-
-
 
         recyclerView = findViewById(R.id.recyclerView_trending);
         recyclerView.setHasFixedSize(true);
@@ -95,6 +76,18 @@ private RecycleAdapter recycleAdapter;
             }
         });
 
+
+      homeViewModel.genersListMutableLiveData.observe(this, new Observer< ArrayList<Genre>>() {
+          @Override
+          public void onChanged( ArrayList<Genre> genres) {
+
+              mPager = findViewById(R.id.view_pager);
+              pagerAdapter = new PagerAdapter(HomeActivity.this, getSupportFragmentManager(),genres);
+              mPager.setAdapter(pagerAdapter);
+              SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
+              viewPagerTab.setViewPager(mPager);
+          }
+      });
     }
 
 
