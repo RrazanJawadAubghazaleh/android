@@ -2,9 +2,11 @@ package com.movieapp.razan.home.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesByGenerIdModel {
+
     @SerializedName("page")
     private Integer page;
     @SerializedName("total_results")
@@ -12,7 +14,7 @@ public class MoviesByGenerIdModel {
     @SerializedName("total_pages")
     private Integer totalPages;
     @SerializedName("results")
-    private List<Result> results = null;
+    private ArrayList<ResultPager> results = null;
 
     public Integer getPage() {
         return page;
@@ -38,11 +40,11 @@ public class MoviesByGenerIdModel {
         this.totalPages = totalPages;
     }
 
-    public List<Result> getResults() {
+    public ArrayList<ResultPager> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(ArrayList<ResultPager> results) {
         this.results = results;
     }
 }

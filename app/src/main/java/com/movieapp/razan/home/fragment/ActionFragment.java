@@ -22,6 +22,7 @@ import com.movieapp.razan.R;
 import com.movieapp.razan.home.adapter.RecycleHomeMoviesAdapter;
 import com.movieapp.razan.home.model.Meal;
 import com.movieapp.razan.home.model.Result;
+import com.movieapp.razan.home.model.ResultPager;
 import com.movieapp.razan.home.ui.PageViewModel;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 public class ActionFragment extends Fragment {
     private PageViewModel pageViewModel;
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private RecyclerView recyclerView;
+    private RecycleHomeMoviesAdapter adapter;
 
     public static ActionFragment newInstance(int index) {
         ActionFragment fragment = new ActionFragment();
@@ -49,8 +52,6 @@ public class ActionFragment extends Fragment {
         pageViewModel.setIndex(index);
     }
 
-    private RecyclerView recyclerView;
-    private RecycleHomeMoviesAdapter adapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,11 +65,12 @@ public class ActionFragment extends Fragment {
                 textView.setText(s);
             }
         });
-pageViewModel.getMealList();
+        pageViewModel.getMoviesByGenerId(1,28);
+//pageViewModel.getMealList();
 
         recyclerView = root.findViewById(R.id.recyclerView_moovies);
         recyclerView.setLayoutManager(new GridLayoutManager((Context) getContext(), 2));
-        pageViewModel.mealLiveData.observe((LifecycleOwner) getContext(), new Observer<ArrayList<Meal>>() {
+     /*   pageViewModel.mealLiveData.observe((LifecycleOwner) getContext(), new Observer<ArrayList<Meal>>() {
             @Override
             public void onChanged(ArrayList<Meal> meals) {
 
@@ -77,9 +79,17 @@ pageViewModel.getMealList();
                 adapter.setListMeal(meals);
                 recyclerView.setAdapter(adapter);
             }
+        });*/
+
+        pageViewModel.resaltMutableLiveData.observe((LifecycleOwner) getContext(), new Observer<ArrayList<ResultPager>>() {
+            @Override
+            public void onChanged(ArrayList<ResultPager> results) {
+
+                adapter = new RecycleHomeMoviesAdapter(getContext());
+                adapter.setList(results);
+                recyclerView.setAdapter(adapter);
+            }
         });
-
-
         return root;
     }
 

@@ -17,6 +17,8 @@ public interface ApiInterface {
 @GET("genre/movie/list")
     Call<GenersListModel>getGenreList(@Query("api_key") String apiKey);
 
-    @GET("discover/movie/{page}/{with_genres}")
-    Call<MoviesByGenerIdModel>gerMoviesByGenerIdModel(@Path("page") int page,@Path("with_genres") int genres, @Query("api_key") String apiKey);
+    @GET("discover/movie")
+    Call<MoviesByGenerIdModel>gerMoviesByGenerIdModel( @Query("api_key") String apiKey,
+                                                       @Query("page") int page,
+                                                      @Query("with_genres") int genres);
 }

@@ -19,12 +19,13 @@ import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
 import com.movieapp.razan.home.model.Meal;
 import com.movieapp.razan.home.model.Result;
+import com.movieapp.razan.home.model.ResultPager;
 
 import java.util.ArrayList;
 
 public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMoviesAdapter.viewitem> {
 
-    ArrayList<Result> items;
+    ArrayList<ResultPager> items;
     ArrayList<Meal>meals;
     private Context context;
     private boolean isCheckrd = false;
@@ -56,15 +57,19 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
     @Override
     public void onBindViewHolder(final viewitem holder, final int position) {
 
-       // Log.d("movie_id", items.get(position).getPosterPath());
-      //  Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500" + items.get(position).getPosterPath());
+       Log.d("movie_id", items.get(position).getPosterPath());
+       Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500" + items.get(position).getPosterPath());
 
-        holder.draweeView.setImageResource(R.drawable.tet);
-        holder.tvName.setText(meals.get(position).getMealName());
-        holder.tvType.setText(meals.get(position).getMealPrice());
-    //    holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
-       // holder.tvReatHome.setText(items.get(position).getVoteAverage().toString());
-//
+        holder.draweeView.setImageURI(uri);
+           holder.tvName.setText(items.get(position).getTitle());
+        holder.tvType.setText("action");
+        holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
+        holder.tvReatHome.setText(items.get(position).getVoteAverage().toString());
+
+        // holder.tvName.setText(meals.get(position).getMealName());
+        //  holder.tvType.setText(meals.get(position).getMealPrice());
+        //    holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
+        // holder.tvReatHome.setText(items.get(position).getVoteAverage().toString());
     }
 
 
@@ -76,7 +81,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
         return items.size();
     }
 
-    public void setList(ArrayList<Result> list) {
+    public void setList(ArrayList<ResultPager> list) {
         this.items = list;
         notifyDataSetChanged();
     }
@@ -87,7 +92,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
         notifyDataSetChanged();
     }
 
-    public void addPlayers(ArrayList<Result> datum) {
+    public void addPlayers(ArrayList<ResultPager> datum) {
         if (items == null) {
             this.items = datum;
             notifyDataSetChanged();
@@ -121,7 +126,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
             tvReatHome = itemView.findViewById(R.id.tv_reat_home);
             my_heart_home = (SimpleDraweeView) itemView.findViewById(R.id.my_heart_home);
 
-            my_heart_home.setOnClickListener(new View.OnClickListener() {
+          /*  my_heart_home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (isCheckrd) {
@@ -134,7 +139,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
                 }
             });
 
-
+*/
         }
     }
 
