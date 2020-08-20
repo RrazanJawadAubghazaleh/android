@@ -1,5 +1,6 @@
 package com.movieapp.razan.home.data;
 
+import com.movieapp.razan.home.model.DetailsMovieModel;
 import com.movieapp.razan.home.model.GenersListModel;
 import com.movieapp.razan.home.model.MoviesByGenerIdModel;
 import com.movieapp.razan.home.model.TrendingModel;
@@ -21,4 +22,8 @@ public interface ApiInterface {
     Call<MoviesByGenerIdModel>gerMoviesByGenerIdModel( @Query("api_key") String apiKey,
                                                        @Query("page") int page,
                                                       @Query("with_genres") int genres);
+
+
+    @GET("movie/{movie_id}")
+    Call<DetailsMovieModel>getDetailsMovies(@Path("movie_id") int id, @Query("api_key") String apiKey);
 }

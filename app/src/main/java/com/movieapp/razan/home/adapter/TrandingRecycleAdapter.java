@@ -53,6 +53,7 @@ public class TrandingRecycleAdapter extends RecyclerView.Adapter<TrandingRecycle
         holder.rowItemTrandingBBinding.setResult(result);
         holder.rowItemTrandingBBinding.myImageViewHome.setImageURI( Uri.parse("https://image.tmdb.org/t/p/w500"+result.getPosterPath()));
 
+
        /* Log.d("movie_id", items.get(position).getPosterPath());
         Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath());
         holder.draweeView.setImageURI(uri);*/

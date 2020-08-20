@@ -2,6 +2,7 @@ package com.movieapp.razan.home.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
+import com.movieapp.razan.DetailsActivity;
 import com.movieapp.razan.R;
 import com.movieapp.razan.home.model.Result;
 
@@ -58,7 +60,17 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
         Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath());
         holder.draweeView.setImageURI(uri);
 
-
+        //on click for row
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = items.get(position).getId(); // get Id
+                Intent intent = new Intent(holder.itemView.getContext(), DetailsActivity.class);
+                intent.putExtra("pos", id); // Pass Id
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
 

@@ -20,6 +20,7 @@ import com.movieapp.razan.home.adapter.RecycleHomeMoviesAdapter;
 import com.movieapp.razan.home.adapter.TrandingRecycleAdapter;
 import com.movieapp.razan.home.model.Genre;
 import com.movieapp.razan.home.model.Result;
+import com.movieapp.razan.home.ui.viewmodels.HomeViewModel;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;

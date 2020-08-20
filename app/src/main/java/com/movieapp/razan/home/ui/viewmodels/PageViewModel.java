@@ -1,4 +1,4 @@
-package com.movieapp.razan.home.ui;
+package com.movieapp.razan.home.ui.viewmodels;
 
 import android.util.Log;
 

@@ -18,7 +18,7 @@ import com.movieapp.razan.R;
 import com.movieapp.razan.home.adapter.PagerAdapter;
 import com.movieapp.razan.home.adapter.RecycleHomeMoviesAdapter;
 import com.movieapp.razan.home.model.ResultPager;
-import com.movieapp.razan.home.ui.PageViewModel;
+import com.movieapp.razan.home.ui.viewmodels.PageViewModel;
 
 import java.util.ArrayList;
 
