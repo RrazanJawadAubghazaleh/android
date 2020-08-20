@@ -8,6 +8,7 @@
     </style>
 
 
+
     <style name="myEditText">
         <item name="android:background">@drawable/background_edit_login_activity</item>
         <item name="android:ems">10</item>

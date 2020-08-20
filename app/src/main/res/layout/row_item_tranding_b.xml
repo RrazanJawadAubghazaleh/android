@@ -12,7 +12,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginBottom="8dp"
             android:elevation="3dp"
@@ -21,23 +21,34 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/my_image_view_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     fresco:placeholderImage="@drawable/background_imag"
                     app:ignore="MissingConstraints"
+                    fresco:roundedCornerRadius="5dp"
+                    app:roundedCornerRadius="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="w,2:3"
-                    app:layout_constraintEnd_toStartOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                   fresco:layout_constraintTop_toTopOf="parent"
+                    fresco:layout_constraintStart_toStartOf="parent"
+                    fresco:layout_constraintEnd_toEndOf="parent"
                     android:adjustViewBounds="true"
                     android:cropToPadding="false"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    fresco:roundTopLeft="true"
+                    fresco:roundTopRight="true"
+                    fresco:roundBottomLeft="true"
+                    fresco:roundBottomRight="true"
+                    fresco:roundTopStart="true"
+                    fresco:roundTopEnd="true"
+                    fresco:roundBottomStart="true"
+                    fresco:roundBottomEnd="true"
+                    />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

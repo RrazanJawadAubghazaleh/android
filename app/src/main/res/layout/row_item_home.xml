@@ -17,7 +17,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         >
 
 
@@ -41,6 +40,8 @@
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             fresco:layout_constraintEnd_toEndOf="@id/my_image_view_home"
             fresco:layout_constraintStart_toStartOf="@+id/my_image_view_home"
             fresco:layout_constraintTop_toBottomOf="@+id/my_image_view_home"
@@ -72,6 +73,7 @@
                 android:id="@+id/lin__circal_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:background="@drawable/circle_sub_type"
                 fresco:layout_constraintEnd_toStartOf="@+id/tv_vote_average_home"
                 fresco:layout_constraintStart_toStartOf="parent"
@@ -81,14 +83,12 @@
                     android:id="@+id/tv_reat_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     android:background="@drawable/bal"
                     android:text="5.8"
                     android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    fresco:layout_constraintEnd_toEndOf="parent"
-                    fresco:layout_constraintStart_toStartOf="parent" />
+                   />
             </LinearLayout>
 
             <TextView

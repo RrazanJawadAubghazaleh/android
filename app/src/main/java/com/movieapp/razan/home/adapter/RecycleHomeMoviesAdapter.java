@@ -18,12 +18,11 @@ import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
 import com.movieapp.razan.home.model.Meal;
-import com.movieapp.razan.home.model.Result;
 import com.movieapp.razan.home.model.ResultPager;
 
 import java.util.ArrayList;
 
-public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMoviesAdapter.viewitem> {
+public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMoviesAdapter.MyViewHolder> {
 
     ArrayList<ResultPager> items;
     ArrayList<Meal>meals;
@@ -44,18 +43,18 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
 
     //onCreateViewHolder used to HAndle on Clicks
     @Override
-    public viewitem onCreateViewHolder(final ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_item_tranding, parent, false);
-        return new viewitem(itemView);
+                .inflate(R.layout.row_item_home, parent, false);
+        return new MyViewHolder(itemView);
     }
 
 
     //to fill each item with data from the array depending on position
     @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(final viewitem holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
        Log.d("movie_id", items.get(position).getPosterPath());
        Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500" + items.get(position).getPosterPath());
@@ -107,7 +106,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
     //The View Item part responsible for connecting the row.xml with
     // each item in the RecyclerView
     //make declare and initalize
-    class viewitem extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         //Declare
         // ImageView image;
@@ -115,7 +114,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
         SimpleDraweeView draweeView, my_heart_home;
 
         //initialize
-        public viewitem(View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             //image = itemView.findViewById(R.id.img_trending);
             draweeView = (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_home);
@@ -126,7 +125,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
             tvReatHome = itemView.findViewById(R.id.tv_reat_home);
             my_heart_home = (SimpleDraweeView) itemView.findViewById(R.id.my_heart_home);
 
-          /*  my_heart_home.setOnClickListener(new View.OnClickListener() {
+              my_heart_home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (isCheckrd) {
@@ -139,7 +138,7 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
                 }
             });
 
-*/
+
         }
     }
 

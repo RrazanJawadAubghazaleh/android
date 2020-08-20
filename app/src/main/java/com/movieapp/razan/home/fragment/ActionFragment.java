@@ -58,28 +58,10 @@ public class ActionFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_action, container, false);
 
-        final TextView textView = root.findViewById(R.id.textView);
-        pageViewModel.getText().observe((LifecycleOwner) getContext(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         pageViewModel.getMoviesByGenerId(1,28);
-//pageViewModel.getMealList();
 
         recyclerView = root.findViewById(R.id.recyclerView_moovies);
         recyclerView.setLayoutManager(new GridLayoutManager((Context) getContext(), 2));
-     /*   pageViewModel.mealLiveData.observe((LifecycleOwner) getContext(), new Observer<ArrayList<Meal>>() {
-            @Override
-            public void onChanged(ArrayList<Meal> meals) {
-
-
-                adapter = new RecycleHomeMoviesAdapter(getContext());
-                adapter.setListMeal(meals);
-                recyclerView.setAdapter(adapter);
-            }
-        });*/
 
         pageViewModel.resaltMutableLiveData.observe((LifecycleOwner) getContext(), new Observer<ArrayList<ResultPager>>() {
             @Override
@@ -94,19 +76,5 @@ public class ActionFragment extends Fragment {
     }
 
 
-    private ArrayList<Meal> prepareArray() {
-        ArrayList<Meal> m = new ArrayList<>();
 
-        Meal p1 = new Meal();
-        p1.setMealName("Burger");
-        p1.setMealPrice("3");
-        m.add(p1);
-
-        p1 = new Meal();
-        p1.setMealName("Pizza");
-        p1.setMealPrice("4");
-        m.add(p1);
-
-        return m;
-    }
 }
