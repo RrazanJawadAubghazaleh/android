@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,17 +19,20 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
-import com.movieapp.razan.home.model.Meal;
 import com.movieapp.razan.home.model.ResultPager;
+import com.movieapp.razan.home.ui.HomeViewModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMoviesAdapter.MyViewHolder> {
+public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMoviesAdapter.MyViewHolder> implements Filterable {
 
     ArrayList<ResultPager> items;
-    ArrayList<Meal>meals;
+    ArrayList<ResultPager> moviseListAll;
     private Context context;
     private boolean isCheckrd = false;
+
+    String type = "";
 
     public RecycleHomeMoviesAdapter(Context context) {
         this.context = context;
@@ -55,20 +60,41 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        if (items != null) {
+            if (items.get(position).getPosterPath() != null) {
+                Log.d("movie_id", items.get(position).getPosterPath());
+                Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500" + items.get(position).getPosterPath());
+                holder.draweeView.setImageURI(uri);
+            }
+            if (items.get(position).getTitle() != null) {
+                holder.tvName.setText(items.get(position).getTitle());
+            }
 
-       Log.d("movie_id", items.get(position).getPosterPath());
-       Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500" + items.get(position).getPosterPath());
 
-        holder.draweeView.setImageURI(uri);
-           holder.tvName.setText(items.get(position).getTitle());
-        holder.tvType.setText("action");
-        holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
-        holder.tvReatHome.setText(items.get(position).getVoteAverage().toString());
+            if (items.get(position).getVoteAverage() != null) {
+                holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
+            }
+            if (items.get(position).getVoteAverage().toString() != null) {
+                holder.tvReatHome.setText(items.get(position).getVoteAverage().toString()+"k");
+            }
+        }
 
-        // holder.tvName.setText(meals.get(position).getMealName());
-        //  holder.tvType.setText(meals.get(position).getMealPrice());
-        //    holder.tvAvoteAverage.setText(items.get(position).getVoteAverage().toString());
-        // holder.tvReatHome.setText(items.get(position).getVoteAverage().toString());
+        if (items.get(position).getGenreIds() != null) {
+            getTypeGenre(items.get(position).getGenreIds());
+            holder.tvType.setText(type);
+        }
+
+    }
+
+    public void getTypeGenre(ArrayList<Integer> g) {
+        for (int i = 0; i < g.size(); i++) {
+            for (int j = 0; j < HomeViewModel.genresHome.size(); j++) {
+                int q = g.get(i);
+                if (HomeViewModel.genresHome.get(j).getId() == q)
+                    type += HomeViewModel.genresHome.get(j).getName() + "/";
+            }
+
+        }
     }
 
 
@@ -82,58 +108,71 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
 
     public void setList(ArrayList<ResultPager> list) {
         this.items = list;
+        this.moviseListAll = new ArrayList<>(list);
         notifyDataSetChanged();
     }
 
-
-    public void setListMeal(ArrayList<Meal> list) {
-        this.meals = list;
-        notifyDataSetChanged();
+    @Override
+    public Filter getFilter() {
+        return filter;
     }
 
-    public void addPlayers(ArrayList<ResultPager> datum) {
-        if (items == null) {
-            this.items = datum;
-            notifyDataSetChanged();
-        } else {
-            this.items.addAll(datum);
-            notifyDataSetChanged();
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<ResultPager> filteredList = new ArrayList<>();
+            if (charSequence.toString().isEmpty()) {
+                filteredList = moviseListAll;
+            } else {
+                for (int i = 0; i < items.size(); i++) {
+                    if (items.get(i).getTitle().toLowerCase()
+                            .startsWith(charSequence.toString().toLowerCase())) {
+                        filteredList.add(items.get(i));
+
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
         }
 
-
-    }
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            items.clear();
+            items.addAll((Collection<? extends ResultPager>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     //The View Item part responsible for connecting the row.xml with
     // each item in the RecyclerView
-    //make declare and initalize
     class MyViewHolder extends RecyclerView.ViewHolder {
-
-        //Declare
-        // ImageView image;
         TextView tvName, tvType, tvAvoteAverage, tvReatHome;
         SimpleDraweeView draweeView, my_heart_home;
 
-        //initialize
         public MyViewHolder(View itemView) {
             super(itemView);
-            //image = itemView.findViewById(R.id.img_trending);
             draweeView = (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_home);
-
             tvName = itemView.findViewById(R.id.tv_name_movies_home);
             tvType = itemView.findViewById(R.id.tv_type_movies_home);
             tvAvoteAverage = itemView.findViewById(R.id.tv_vote_average_home);
             tvReatHome = itemView.findViewById(R.id.tv_reat_home);
             my_heart_home = (SimpleDraweeView) itemView.findViewById(R.id.my_heart_home);
 
-              my_heart_home.setOnClickListener(new View.OnClickListener() {
+            my_heart_home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (isCheckrd) {
                         my_heart_home.setImageResource(R.drawable.heart_oramg);
+                        my_heart_home.setMaxWidth(10);
+                        my_heart_home.setMaxHeight(10);
                         isCheckrd = false;
                     } else {
                         isCheckrd = true;
                         my_heart_home.setImageResource(R.drawable.heart);
+                        my_heart_home.setMaxWidth(10);
+                        my_heart_home.setMaxHeight(10);
                     }
                 }
             });

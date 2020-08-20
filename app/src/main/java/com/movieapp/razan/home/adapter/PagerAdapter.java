@@ -17,6 +17,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
     ArrayList<Genre> items;
+    public static int genres=0;
 
     public PagerAdapter(Context context, FragmentManager fm, ArrayList<Genre> list) {
         super(fm);
@@ -27,6 +28,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        genres=items.get(position).getId();
         return new ActionFragment();
     }
 

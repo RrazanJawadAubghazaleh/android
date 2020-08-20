@@ -1,9 +1,11 @@
 package com.movieapp.razan.home.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,25 +14,22 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.movieapp.razan.R;
 import com.movieapp.razan.databinding.ActivityHomeBandingBinding;
-import com.movieapp.razan.home.adapter.HomeViewOagerAdapter;
 import com.movieapp.razan.home.adapter.PagerAdapter;
 import com.movieapp.razan.home.adapter.RecycleAdapter;
+import com.movieapp.razan.home.adapter.RecycleHomeMoviesAdapter;
 import com.movieapp.razan.home.adapter.TrandingRecycleAdapter;
 import com.movieapp.razan.home.model.Genre;
 import com.movieapp.razan.home.model.Result;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ViewPager viewPager;
-    private HomeViewOagerAdapter homeViewOagerAdapter;
-    private static final int NUM_PAGES = 5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
+    private com.movieapp.razan.home.adapter.RecycleHomeMoviesAdapter recycleHomeMoviesAdapter;
 
 private RecycleAdapter recycleAdapter;
     HomeViewModel homeViewModel;
@@ -88,8 +87,28 @@ private RecycleAdapter recycleAdapter;
               viewPagerTab.setViewPager(mPager);
           }
       });
+        recycleHomeMoviesAdapter=new RecycleHomeMoviesAdapter(HomeActivity.this);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        MenuItem item=menu.findItem(R.id.action_search);
+        SearchView searchView= (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recycleHomeMoviesAdapter.getFilter();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public void onBackPressed() {

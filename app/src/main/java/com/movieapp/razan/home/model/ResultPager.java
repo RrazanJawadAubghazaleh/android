@@ -31,11 +31,11 @@ public class ResultPager {
 
     private String originalLanguage;
     @SerializedName("original_title")
-
     private String originalTitle;
-    @SerializedName("genre_ids")
 
+    @SerializedName("genre_ids")
     private ArrayList<Integer> genreIds = null;
+
     @SerializedName("title")
 
     private String title;

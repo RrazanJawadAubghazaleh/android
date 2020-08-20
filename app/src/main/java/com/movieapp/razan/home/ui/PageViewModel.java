@@ -10,13 +10,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.movieapp.razan.home.data.ApiClient;
 import com.movieapp.razan.home.data.ApiInterface;
-import com.movieapp.razan.home.model.GenersListModel;
-import com.movieapp.razan.home.model.Genre;
-import com.movieapp.razan.home.model.Meal;
 import com.movieapp.razan.home.model.MoviesByGenerIdModel;
-import com.movieapp.razan.home.model.Result;
 import com.movieapp.razan.home.model.ResultPager;
-import com.movieapp.razan.home.model.TrendingModel;
 
 import java.util.ArrayList;
 
@@ -29,7 +24,6 @@ public class PageViewModel extends ViewModel {
 
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
 
-    public MutableLiveData<ArrayList<Meal>> mealLiveData = new MutableLiveData<ArrayList<Meal>>();
     public MutableLiveData<ArrayList<ResultPager>> resaltMutableLiveData = new MutableLiveData<ArrayList<ResultPager>>();
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
@@ -45,6 +39,7 @@ public class PageViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
 
     public void getMoviesByGenerId(int page, int genres) {
 
@@ -72,25 +67,8 @@ public class PageViewModel extends ViewModel {
     }
 
 
-    public void getMealList() {
-        mealLiveData.setValue(prepareArray());
-    }
 
-    private ArrayList<Meal> prepareArray() {
-        ArrayList<Meal> m = new ArrayList<>();
 
-        Meal p1 = new Meal();
-        p1.setMealName("Burger");
-        p1.setMealPrice("3");
-        m.add(p1);
-
-        p1 = new Meal();
-        p1.setMealName("Pizza");
-        p1.setMealPrice("4");
-        m.add(p1);
-
-        return m;
-    }
 
 
 }

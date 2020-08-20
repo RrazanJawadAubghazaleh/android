@@ -16,7 +16,6 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.R;
-import com.movieapp.razan.home.model.Meal;
 import com.movieapp.razan.home.model.Result;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.viewitem
 
 
     ArrayList<Result> items;
-    ArrayList<Meal>meals;
     private Context context;
 
 

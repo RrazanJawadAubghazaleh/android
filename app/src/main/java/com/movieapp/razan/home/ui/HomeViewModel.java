@@ -22,11 +22,12 @@ import retrofit2.Response;
 public class HomeViewModel extends ViewModel {
 
     private final static String API_KEY = "f0dd213b514dd22fa6d7790fdae32949";
-    MutableLiveData<ArrayList<Result>> listMutableLiveDataTrending =
+   public MutableLiveData<ArrayList<Result>> listMutableLiveDataTrending =
             new MutableLiveData<>();
 
-    MutableLiveData< ArrayList<Genre>> genersListMutableLiveData=new MutableLiveData<ArrayList<Genre>>();
+   public MutableLiveData< ArrayList<Genre>> genersListMutableLiveData=new MutableLiveData<ArrayList<Genre>>();
 
+   public static   ArrayList<Genre> genresHome ;
     public void getTrending() {
 
         ApiInterface apiService =
@@ -65,6 +66,7 @@ public class HomeViewModel extends ViewModel {
             public void onResponse(Call<GenersListModel> call, Response<GenersListModel> response) {
                 Log.d("TAGR", "Number of movies received: " + response.body().getGenres());
                 ArrayList<Genre> genres = response.body().getGenres();
+                genresHome=response.body().getGenres();
                 genersListMutableLiveData.setValue(genres);
             }
 
