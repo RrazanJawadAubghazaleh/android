@@ -24,7 +24,7 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/my_image_view_home"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
@@ -32,6 +32,15 @@
             fresco:layout_constraintEnd_toEndOf="parent"
             fresco:layout_constraintStart_toStartOf="parent"
             fresco:layout_constraintTop_toTopOf="parent"
+
+            fresco:roundedCornerRadius="5dp"
+            fresco:roundBottomRight="false"
+            fresco:roundBottomLeft="false"
+            fresco:roundTopStart="true"
+            fresco:roundTopEnd="true"
+            fresco:roundTopRight="true"
+            fresco:roundTopLeft="true"
+
 />
 
         <TextView
