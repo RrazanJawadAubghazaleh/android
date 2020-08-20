@@ -1,10 +1,19 @@
 package com.movieapp.razan.home.ui.viewmodels;
 
+import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.core.ImageTranscoderType;
+import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.home.data.ApiClient;
 import com.movieapp.razan.home.data.ApiInterface;
 import com.movieapp.razan.home.model.DetailsMovieModel;
@@ -22,6 +31,8 @@ public class DetailsViewModel extends ViewModel {
     public MutableLiveData<DetailsMovieModel> listMutableLiveDataDetails =
             new MutableLiveData<>();
     String type = ""; ArrayList<Genre>genres;
+
+
     public void getDetalis(int id) {
 
         ApiInterface apiService =
@@ -48,15 +59,17 @@ public class DetailsViewModel extends ViewModel {
     }
 
 
-    public String getTypeGenre(ArrayList<Genre> g) {
-        for (int i = 0; i < g.size(); i++) {
+    public String getTypeGenre() {
+        for (int i = 0; i < genres.size(); i++) {
             for (int j = 0; j < HomeViewModel.genresHome.size(); j++) {
-                int q = g.get(i).getId();
+                int q = genres.get(i).getId();
                 if (HomeViewModel.genresHome.get(j).getId() == q)
                     type += HomeViewModel.genresHome.get(j).getName() + "/";
             }
 
         }
+
         return type;
     }
+
 }
