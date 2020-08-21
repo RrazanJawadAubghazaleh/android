@@ -20,7 +20,7 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/my_image_view_detail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
@@ -52,6 +52,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_type_movies_detail"
             fresco:layout_constraintEnd_toEndOf="@id/my_image_view_detail"
             fresco:layout_constraintStart_toStartOf="@+id/my_image_view_detail"
             fresco:layout_constraintTop_toBottomOf="@+id/my_image_view_detail"
@@ -66,6 +67,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             fresco:layout_constraintEnd_toEndOf="@id/my_image_view_detail"
             fresco:layout_constraintStart_toStartOf="@+id/my_image_view_detail"
             fresco:layout_constraintTop_toBottomOf="@+id/tv_name_movies_detail"
@@ -78,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_text_detail"
             fresco:layout_constraintEnd_toEndOf="@id/my_image_view_detail"
             fresco:layout_constraintStart_toStartOf="@+id/my_image_view_detail"
             fresco:layout_constraintTop_toBottomOf="@+id/tv_type_movies_detail">
@@ -89,7 +92,7 @@
                 android:background="@drawable/circle_sub_type"
                 android:gravity="center"
                 fresco:layout_constraintBottom_toBottomOf="parent"
-                fresco:layout_constraintEnd_toStartOf="@+id/tv_vote_average_detail"
+                fresco:layout_constraintEnd_toStartOf="@+id/tv_vote_average_detail_Casting"
                 fresco:layout_constraintStart_toStartOf="parent"
                 fresco:layout_constraintTop_toTopOf="parent">
 
@@ -105,7 +108,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_vote_average_detail"
+                android:id="@+id/tv_vote_average_detail_Casting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -130,6 +133,7 @@
             android:maxLines="5"
             android:text="@string/app_name"
             android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_star_cast_detail"
             app:layout_constraintEnd_toEndOf="@+id/my_image_view_detail"
             app:layout_constraintStart_toStartOf="@+id/my_image_view_detail"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -146,13 +150,14 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView_detail_cast"
             app:layout_constraintEnd_toEndOf="@+id/my_image_view_detail"
             app:layout_constraintStart_toStartOf="@+id/my_image_view_detail"
             app:layout_constraintTop_toBottomOf="@+id/tv_text_detail"
             tools:text="star cast" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_detail"
+            android:id="@+id/recyclerView_detail_cast"
             android:layout_width="0dp"
             android:layout_height="122dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -170,36 +175,17 @@
             app:layout_constraintTop_toTopOf="@+id/my_image_view_detail"
             fresco:srcCompat="@drawable/ic_backspace" />
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/imageViewplay"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="168dp"
-            android:layout_marginEnd="30dp"
-            android:background="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/my_image_view_detail"
-            app:layout_constraintTop_toTopOf="@+id/my_image_view_detail"
-            app:roundAsCircle="true"
-
-
-            app:roundBottomEnd="true"
-            app:roundBottomStart="true"
-            fresco:roundBottomLeft="true"
-            fresco:roundBottomRight="true"
-            fresco:roundTopEnd="true"
-            fresco:roundTopLeft="true"
-            fresco:roundTopRight="true"
-            fresco:roundTopStart="true"
-            fresco:roundedCornerRadius="50dp" />
 
         <ImageView
             android:id="@+id/imageViewplayOrang"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="250dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name_movies_detail"
             app:layout_constraintEnd_toEndOf="@+id/my_image_view_detail"
             app:layout_constraintTop_toTopOf="@+id/my_image_view_detail"
-            fresco:srcCompat="@drawable/noun_play" />
+            fresco:srcCompat="@drawable/ic_play" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

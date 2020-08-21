@@ -2,6 +2,7 @@ package com.movieapp.razan.home.data;
 
 import com.movieapp.razan.home.model.DetailsMovieModel;
 import com.movieapp.razan.home.model.GenersListModel;
+import com.movieapp.razan.home.model.MovieCastModel;
 import com.movieapp.razan.home.model.MoviesByGenerIdModel;
 import com.movieapp.razan.home.model.TrendingModel;
 
@@ -27,8 +28,8 @@ public interface ApiInterface {
     @GET("movie/{movie_id}")
     Call<DetailsMovieModel>getDetailsMovies(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
-  /*  @GET("movie/{movie_id}/{credits}")
-    Call<DetailsMovieModel>getStarCast(@Path("movie_id") int id,
-                                       @Path("credits") String credits,
-                                       @Query("api_key") String apiKey);*/
+    @GET("movie/{movie_id}/{credits}")
+    Call<MovieCastModel>getStarCast(@Path("movie_id") int id,
+                                    @Path("credits") String credits,
+                                    @Query("api_key") String apiKey);
 }

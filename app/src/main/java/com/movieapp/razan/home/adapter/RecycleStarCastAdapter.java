@@ -18,6 +18,7 @@ import com.facebook.imagepipeline.core.ImageTranscoderType;
 import com.facebook.imagepipeline.core.MemoryChunkType;
 import com.movieapp.razan.DetailsActivity;
 import com.movieapp.razan.R;
+import com.movieapp.razan.home.model.Cast;
 import com.movieapp.razan.home.model.Result;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class RecycleStarCastAdapter extends RecyclerView.Adapter<RecycleStarCastAdapter.viewitem> {
 
 
-    ArrayList<Result> items;
+    ArrayList<Cast> items;
     private Context context;
 
 
@@ -46,7 +47,7 @@ public class RecycleStarCastAdapter extends RecyclerView.Adapter<RecycleStarCast
     public viewitem onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_item_tranding, parent, false);
+                .inflate(R.layout.row_item_start_cast, parent, false);
         return new viewitem(itemView);
     }
 
@@ -56,21 +57,15 @@ public class RecycleStarCastAdapter extends RecyclerView.Adapter<RecycleStarCast
     @Override
     public void onBindViewHolder(final viewitem holder, final int position) {
 
-        Log.d("movie_id", items.get(position).getPosterPath());
-        Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getPosterPath());
-        holder.draweeView.setImageURI(uri);
+        if (items.get(position).getProfilePath() != null) {
 
-        //on click for row
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = items.get(position).getId(); // get Id
-                Intent intent = new Intent(holder.itemView.getContext(), DetailsActivity.class);
-                intent.putExtra("pos", id); // Pass Id
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
+            Log.d("movie_id", items.get(position).getProfilePath());
+            Uri uri = Uri.parse("https://image.tmdb.org/t/p/w500"+items.get(position).getProfilePath());
+            holder.draweeView.setImageURI(uri);
+        }
+
+
+
     }
 
 
@@ -82,27 +77,11 @@ public class RecycleStarCastAdapter extends RecyclerView.Adapter<RecycleStarCast
         return items.size();
     }
 
-    public void setList(ArrayList<Result> list) {
+    public void setList(ArrayList<Cast> list) {
         this.items = list;
         notifyDataSetChanged();
     }
 
-
-    public void addPlayers(ArrayList<Result> datum) {
-        if (items == null) {
-            this.items = datum;
-            notifyDataSetChanged();
-        } else {
-            this.items.addAll(datum);
-            notifyDataSetChanged();
-        }
-
-
-    }
-
-    //The View Item part responsible for connecting the row.xml with
-    // each item in the RecyclerView
-    //make declare and initalize
     class viewitem extends RecyclerView.ViewHolder {
 
         //Declare
@@ -111,8 +90,7 @@ public class RecycleStarCastAdapter extends RecyclerView.Adapter<RecycleStarCast
         //initialize
         public viewitem(View itemView) {
             super(itemView);
-            //image = itemView.findViewById(R.id.img_trending);
-            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_home);
+            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.my_image_view_detail_Cast);
 
         }
     }
