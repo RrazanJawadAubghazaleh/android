@@ -106,7 +106,10 @@ public class RecycleHomeMoviesAdapter extends RecyclerView.Adapter<RecycleHomeMo
             for (int j = 0; j < HomeViewModel.genresHome.size(); j++) {
                 int q = g.get(i);
                 if (HomeViewModel.genresHome.get(j).getId() == q)
-                    type += HomeViewModel.genresHome.get(j).getName() + "/";
+                    if(i==g.size()-1)
+                        type += HomeViewModel.genresHome.get(j).getName() + ".";
+                    else
+                        type += HomeViewModel.genresHome.get(j).getName() + "/";
             }
 
         }

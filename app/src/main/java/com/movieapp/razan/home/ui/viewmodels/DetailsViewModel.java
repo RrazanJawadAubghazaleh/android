@@ -69,6 +69,9 @@ public class DetailsViewModel extends ViewModel {
             for (int j = 0; j < HomeViewModel.genresHome.size(); j++) {
                 int q = genres.get(i).getId();
                 if (HomeViewModel.genresHome.get(j).getId() == q)
+                   if(i==genres.size()-1)
+                       type += HomeViewModel.genresHome.get(j).getName() + ".";
+                else
                     type += HomeViewModel.genresHome.get(j).getName() + "/";
             }
 
