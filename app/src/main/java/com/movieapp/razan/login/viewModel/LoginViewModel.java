@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.movieapp.razan.login.model.UsersModel;
 import com.movieapp.razan.R;
 
 import es.dmoral.toasty.Toasty;
+
+import static com.movieapp.razan.R.string.loginErrorEmail;
 
 public class LoginViewModel extends ViewModel {
     private UsersModel users;
@@ -52,6 +55,7 @@ public class LoginViewModel extends ViewModel {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
                 users.setEmail(editable.toString());
             }
         };
@@ -99,7 +103,13 @@ public class LoginViewModel extends ViewModel {
             });
             }
     else
-            loginResultCallBack.onError(R.string.loginError);
+        {
+
+            if(users.getEmail()==null){
+                loginResultCallBack.onError(loginErrorEmail); }
+            else if(users.getPassword()==null)
+            {loginResultCallBack.onError(R.string.loginErrorPassword);}
+        }
     }
 
     private void firebaseAuthWithGoogle() {

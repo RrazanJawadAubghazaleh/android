@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginResultCall
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-
+    public static int flagLogin=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +62,22 @@ public class LoginActivity extends AppCompatActivity  implements LoginResultCall
 
     private void firebaseAuthWithGoogle() {
 
-        authStateListener=new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    finish();
-                } else {
-                    // If sign in fails, display a message to the user.
-                   // Toast.makeText(LoginActivity.this, R.string.googleFaild,
-                     //       Toast.LENGTH_SHORT).show();
+            authStateListener=new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        flagLogin=1;
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        // Toast.makeText(LoginActivity.this, R.string.googleFaild,
+                        //       Toast.LENGTH_SHORT).show();
 
+                    }
                 }
-            }
-        };
+            };
     }
 
     @Override
@@ -104,6 +105,8 @@ public class LoginActivity extends AppCompatActivity  implements LoginResultCall
 
     @Override
     public void onError(int massage) {
-        Toasty.error(this,  R.string.loginError, Toast.LENGTH_SHORT, true).show();
+        String error=massage+"";
+        //R.string.loginError
+        Toasty.error(this, error , Toast.LENGTH_SHORT, true).show();
     }
 }

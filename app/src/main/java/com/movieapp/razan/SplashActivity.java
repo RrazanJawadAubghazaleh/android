@@ -32,12 +32,17 @@ public class SplashActivity extends AppCompatActivity {
         textViewAppName = findViewById(R.id.textViewAppName);
         imageView.setAnimation(topAnimation);
         textViewAppName.setAnimation(bottomAnimation);
-        
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+              if(LoginActivity.flagLogin==1){
+                  startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                  finish();
+              }
+              else{
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                finish();
+                finish();}
             }
         }, 5000);
     }
