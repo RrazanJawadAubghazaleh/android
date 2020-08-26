@@ -9,10 +9,11 @@
     <string name="forgetPasswprd">Forget Passwprd</string>
     <string name="Movies">Movies</string>
     <string name="Trending">Trending</string>
-    <string name="googleFaild">Sorry..Authentication failed</string>
+    <string name="googleFaild">Sorry..your email or password incorrect</string>
     <string name="loginSuccess">login success</string>
-    <string name="loginErrorEmail">The email ois empty </string>
-    <string name="loginErrorPassword">password is empty</string>
+    <string name="loginErrorEmail">The email is empty </string>
+    <string name="loginErrorEmailFiled">Enter a valid email </string>
+    <string name="loginErrorPassword">The password is empty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">search</string>

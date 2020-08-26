@@ -31,6 +31,6 @@ public class UsersModel {
     }
 
     public boolean isValidData() {
-        return !TextUtils.isEmpty(getEmail()) && !TextUtils.isEmpty(getPassword());
+        return !TextUtils.isEmpty(getEmail()) && !TextUtils.isEmpty(getPassword()) ;
     }
 }

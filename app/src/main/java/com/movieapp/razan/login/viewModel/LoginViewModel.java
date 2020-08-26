@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,11 +16,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.movieapp.razan.R;
 import com.movieapp.razan.home.ui.HomeActivity;
-import com.movieapp.razan.login.LoginActivity;
 import com.movieapp.razan.login.interfac.LoginResultCallBack;
 import com.movieapp.razan.login.model.UsersModel;
-import com.movieapp.razan.R;
 
 import es.dmoral.toasty.Toasty;
 
@@ -34,7 +32,7 @@ public class LoginViewModel extends ViewModel {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    public LoginViewModel(LoginResultCallBack loginResultCallBack,Context context) {
+    public LoginViewModel(LoginResultCallBack loginResultCallBack, Context context) {
         this.users = new UsersModel();
         this.loginResultCallBack = loginResultCallBack;
         this.context = context;
@@ -55,8 +53,8 @@ public class LoginViewModel extends ViewModel {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                    users.setEmail(editable.toString());
 
-                users.setEmail(editable.toString());
             }
         };
     }
@@ -82,12 +80,11 @@ public class LoginViewModel extends ViewModel {
     }
 
     //login
-    public void onLogincliked(View view){
-        if (users.isValidData())
-        {//
+    public void onLogincliked(View view) {
+        if (users.isValidData()&&users.getEmail().contains("@")) {//
             mAuth = FirebaseAuth.getInstance();
             firebaseAuthWithGoogle();
-            mAuth.signInWithEmailAndPassword(users.getEmail(),users.getPassword()).addOnSuccessListener((Activity) context, new OnSuccessListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(users.getEmail(), users.getPassword()).addOnSuccessListener((Activity) context, new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     loginResultCallBack.onSuccess(R.string.loginSuccess);
@@ -95,36 +92,39 @@ public class LoginViewModel extends ViewModel {
                 }
             });
 
-            mAuth.signInWithEmailAndPassword(users.getEmail(),users.getPassword()).addOnFailureListener((Activity) context, new OnFailureListener() {
+            mAuth.signInWithEmailAndPassword(users.getEmail(), users.getPassword()).addOnFailureListener((Activity) context, new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toasty.error(context,  R.string.googleFaild, Toast.LENGTH_SHORT, true).show();
+                    Toasty.error(context, R.string.googleFaild, Toast.LENGTH_SHORT, true).show();
                 }
             });
-            }
-    else
-        {
+        } else {
 
-            if(users.getEmail()==null){
-                loginResultCallBack.onError(loginErrorEmail); }
-            else if(users.getPassword()==null)
-            {loginResultCallBack.onError(R.string.loginErrorPassword);}
+            if (users.getEmail() == null) {
+                loginResultCallBack.onError(context.getString(loginErrorEmail));
+            }
+            else if (!users.getEmail().toString().contains("@")) {
+                loginResultCallBack.onError(context.getString(R.string.loginErrorEmailFiled));
+            }
+            else if (users.getPassword() == null) {
+                loginResultCallBack.onError(context.getString(R.string.loginErrorPassword));
+            }
         }
     }
 
     private void firebaseAuthWithGoogle() {
 
-        authStateListener=new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
-                   context.startActivity(new Intent(context, HomeActivity.class));
+                    context.startActivity(new Intent(context, HomeActivity.class));
 
                 } else {
                     // If sign in fails, display a message to the user.
-                     Toast.makeText(context, R.string.googleFaild,
-                           Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.googleFaild,
+                            Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginResultCall
     }
 
     @Override
-    public void onError(int massage) {
+    public void onError(String massage) {
         String error=massage+"";
         //R.string.loginError
         Toasty.error(this, error , Toast.LENGTH_SHORT, true).show();
